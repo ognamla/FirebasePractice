@@ -1,4 +1,3 @@
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyBo6tK6ZV7CsX2eNmdGRddCv5eoXbd8amU",
@@ -9,21 +8,28 @@ var config = {
     messagingSenderId: "805147817095"
 };
 firebase.initializeApp(config);
+var firebaseData = firebase.database();
 
-var emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+var hasSignUp,
+    userLogin,
+    user;
+// var loginPage = "../Users/moto/Desktop/FirebasePractice/login.html"
 
 var account = document.getElementById('account'),
     pwd1 = document.getElementById('pwd1'),
     pwd2 = document.getElementById('pwd2'),
+    name = document.getElementById('userName'),
 
     errorAccount = document.getElementById('errorAccount'),
     errorPwd1 = document.getElementById('errorPwd1'),
     errorPwd2 = document.getElementById('errorPwd2'),
 
-    signUpBtn = document.getElementById('signUpBtn');
+    signUpBtn = document.getElementById('signUpBtn'),
+    loginBtn = document.getElementById('loginBtn');
 
 signUpBtn.addEventListener("click", function () {
     // check e-mail valible
+    var emailRegEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     if (account.value.search(emailRegEx) === -1) {
         errorAccount.innerHTML = "please enter correct e-mail";
         errorAccount.style.display = "block";
@@ -47,11 +53,41 @@ signUpBtn.addEventListener("click", function () {
         return false;
     } else {
         errorPwd2.style.display = "none";
-        firebase.auth().createUserWithEmailAndPassword(account.value, pwd1.value).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMsg = error.message;
-            console.log(errorMsg);
-        });
+        firebase.auth().createUserWithEmailAndPassword(account.value, pwd1.value).then(function (success) {
+            userLogin = success;
+            userLogin.sendEmailVerification().then(function () {
+                console.log("驗證信寄出");
+                user = firebase.auth().currentUser;
+                // set database
+                firebase.database().ref('users/' + user.uid).set({
+                    email: user.email,
+                })
+            }, function (error) {
+                console.error("驗證信錯誤");
+            });
+        }, function (error) {
+            console.log("sign up reject", error);
+        })
+    }
+    if (hasSignUp) {
+        
+       
     }
 }, false);
+
+loginBtn.addEventListener("click", function () {
+    firebase.auth().signInWithEmailAndPassword(account.value, pwd1.value || pwd2.value).then(function (success) {
+        user = firebase.auth().currentUser;
+        userLogin = success;
+        // read database once
+        firebase.database().ref('users/' + user.uid).once('value').then(function (success) {
+            console.log('user database', success.val());
+        })
+        // read database all users
+        firebase.database().ref('users').on('value', function(success) {
+            console.log(' all users', success.val());
+        })
+    }, function (error) {
+        console.log("login error", error);
+    })
+})

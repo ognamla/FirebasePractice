@@ -23,13 +23,18 @@
 </head>
 
 <body class="container">
-
     <hr>
-
     <section id="signUp" class="container">
         <div class="row">
             <div class="col-sm-offset-2 col-sm-8">
-
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="userName">User Name
+                        <p id="errorAccount"></p>
+                    </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" id="userName" placeholder="user name">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="account">E-mail
                         <p id="errorAccount"></p>
@@ -40,21 +45,32 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="pwd1">
-                        Password<p id="errorPwd1"></p></label>
+                        Password
+                        <p id="errorPwd1"></p>
+                    </label>
                     <div class="col-sm-10">
                         <input class="form-control" type="password" id="pwd1" placeholder="6 characters long or more">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="pwd2">
-                        Password<p id="errorPwd2"></p></label>
+                        Password
+                        <p id="errorPwd2"></p>
+                    </label>
                     <div class="col-sm-10">
                         <input class="form-control" type="password" id="pwd2" placeholder="password again">
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-success btn-lg" type="submit" id="signUpBtn">Sign up</button>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-success btn-lg" type="submit" id="signUpBtn">Sign up</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-info btn-lg" type="submit" id="loginBtn">Login</button>
+                        </div>
                     </div>
                 </div>
             </div>
