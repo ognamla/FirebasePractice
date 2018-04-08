@@ -1,0 +1,5 @@
+#errorAccount ,#errorPwd1, #errorPwd2 {
+    color: red;
+    display: none;
+    white-space: nowrap;
+}

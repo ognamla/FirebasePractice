@@ -22,16 +22,54 @@
     <![endif]-->
 </head>
 
-<body class="container-fluid">
-    
-   
+<body class="container">
 
+    <hr>
+
+    <section id="signUp" class="container">
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-8">
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="account">E-mail
+                        <p id="errorAccount"></p>
+                    </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" id="account" placeholder="e-mail for sign up">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="pwd1">
+                        Password<p id="errorPwd1"></p></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="password" id="pwd1" placeholder="6 characters long or more">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="pwd2">
+                        Password<p id="errorPwd2"></p></label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="password" id="pwd2" placeholder="password again">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button class="btn btn-success btn-lg" type="submit" id="signUpBtn">Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
     <script src="js/index.js"></script>
 </body>
 
